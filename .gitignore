@@ -106,6 +106,8 @@ venv.bak/
 
 data/
 data
+dataset
+dataset/
 .vscode
 .idea
 .DS_Store
