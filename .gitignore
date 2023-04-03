@@ -108,6 +108,8 @@ data/
 data
 dataset
 dataset/
+pretrained
+pretrained/
 .vscode
 .idea
 .DS_Store
