@@ -27,20 +27,27 @@ test_pipeline = [
         ])
 ]
 
+# dataset settings
+dataset_type = 'CocoDataset'
+classes = ('car',)
 data = dict(
     samples_per_gpu=2,
     workers_per_gpu=2,
     train=dict(
         ann_file=data_root + 'train/annotations/train.json',
+        classes=classes,
         img_prefix=data_root + 'train/images/'),
     val=dict(
         ann_file=data_root + 'train/annotations/val.json',
+        classes=classes,
         img_prefix=data_root + 'train/images/'),
     test=dict(
         ann_file=data_root + 'train/annotations/val.json',
+        classes=classes,
         img_prefix=data_root + 'train/images/'))
 
 runner = dict(type='EpochBasedRunner', max_epochs=10)
+evaluation = dict(interval=2, metric='bbox')
 
 # NOTE: `auto_scale_lr` is for automatically scaling LR,
 # USER SHOULD NOT CHANGE ITS VALUES.
@@ -48,4 +55,4 @@ runner = dict(type='EpochBasedRunner', max_epochs=10)
 auto_scale_lr = dict(base_batch_size=2)
 
 # pretrained model
-load_from = '/pretrained/deformable_detr_twostage_refine_r50_16x2_50e_coco_20210419_220613-9d28ab72.pth'
+load_from = 'pretrained/deformable_detr_twostage_refine_r50_16x2_50e_coco_20210419_220613-9d28ab72.pth'
